@@ -15,15 +15,16 @@ Tim -> 하나의 tim을 활성화 후, internal clock check, prescale 63, counte
 1. USER CODE BEGIN PV에 volatile int gTimerCnt;를 작성. // 시간 카운터를 위한 변수
 
 2. int main (void)의 user code begin2에 다음과 같은 코드 작성.
-
+```
 if (HAL_TIM_Base_Start_IT (&htim3) != HAL_OK)
   {
 	  Error_Handler ();
 
   }
-
+```
 3. int main (void) 바깥에, 다음과 같은 코드 작성.
 
+```
 void HAL_TIM_PeriodElapsedCallback (TIM_HandleTypeDef *htim)
 {
 	gTimerCnt++;
@@ -33,7 +34,7 @@ void HAL_TIM_PeriodElapsedCallback (TIM_HandleTypeDef *htim)
 		HAL_GPIO_TogglePin (LD2_GPIO_Port, LD2_Pin);
   }
 }
-
+```
 
 ## 해석
 
